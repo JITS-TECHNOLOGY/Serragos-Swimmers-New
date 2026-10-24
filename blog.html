@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog | Serrago's Swimmers</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Follow the blog of Serrago's Swimmers in Albany and swimmer/triathlete Ashley Serrago.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Big+Shoulders+Display:wght@600;800;900&display=swap">
+<style>
+/* Layout: pool deck — tiled pale ground, deep-water navy bands, depth-marker tiles for real facts, one lane-rope divider */
+:root{
+  --deep:#08324f; --deep-2:#0c4266; --lane:#0a6bc1; --lane-hover:#0859a2;
+  --tile:#eef6f8; --tile-line:#dbe9ee; --chlorine:#8fdbe6; --rope:#e2412f;
+  --ink:#0f1d2a; --muted:#4a5d6b; --white:#ffffff; --star:#f5b400;
+  --display:'Big Shoulders Display', 'Arial Narrow', 'Roboto Condensed', Impact, sans-serif;
+  --body:'Atkinson Hyperlegible', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --r:10px;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);font:17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:30;background:var(--white)}
+img{max-width:100%;display:block}
+a{color:var(--lane);text-underline-offset:3px}
+a:hover{color:var(--lane-hover)}
+:focus-visible{outline:3px solid var(--lane);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spacing:.005em;text-transform:uppercase;margin:0;text-wrap:balance;color:var(--deep)}
+h1{font-size:clamp(46px,7vw,88px)}
+h2{font-size:clamp(36px,4.6vw,58px)}
+h3{font-size:clamp(24px,2.4vw,30px);font-weight:800}
+p{margin:0}
+.eyebrow{font:700 13px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--lane)}
+.lede{font-size:clamp(18px,1.7vw,21px);color:var(--muted);max-width:60ch}
+.stack{display:grid;gap:18px;align-content:start}
+.stack>*{min-width:0}
+.prose{display:grid;gap:16px;max-width:66ch;color:var(--muted)}
+.prose strong{color:var(--ink)}
+
+/* header */
+.hdr{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:rgba(255,255,255,.96);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--tile-line)}
+.hdr .wrap{display:flex;align-items:center;gap:28px;padding-block:12px}
+.logo img{height:44px;width:auto}
+.nav{display:flex;align-items:center;gap:6px;margin-left:auto;list-style:none;padding:0;margin-block:0}
+.nav>li>a,.nav summary{display:block;padding:10px 12px;border-radius:8px;font:700 15px/1 var(--body);color:var(--ink);text-decoration:none;cursor:pointer;list-style:none}
+.nav summary::-webkit-details-marker{display:none}
+.nav summary::after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-left:8px;position:relative;top:-3px}
+.nav>li>a:hover,.nav summary:hover{background:var(--tile)}
+.nav [aria-current],.nav .is-cur>summary{color:var(--lane)}
+details[data-more]{position:relative}
+.dd{position:absolute;left:0;top:calc(100% + 8px);background:var(--white);border:1px solid var(--tile-line);border-radius:var(--r);box-shadow:0 18px 40px -18px rgba(8,50,79,.35);padding:8px;list-style:none;margin:0;min-width:270px;display:grid}
+.dd a{display:block;padding:10px 12px;border-radius:8px;color:var(--ink);text-decoration:none;font-weight:700;font-size:15px}
+.dd a:hover{background:var(--tile)}
+.dd a[aria-current]{color:var(--lane)}
+.btn{display:inline-flex;align-items:center;gap:10px;justify-content:center;padding:14px 22px;border-radius:999px;font:700 16px/1 var(--body);text-decoration:none;border:2px solid transparent;transition:background .15s, color .15s}
+.btn-primary{background:var(--lane);color:var(--white)!important}
+.btn-primary:hover{background:var(--lane-hover)}
+.btn-ghost{border-color:currentColor;color:var(--deep)}
+.btn-ghost:hover{background:var(--deep);color:var(--white);border-color:var(--deep)}
+.btn-sm{padding:11px 18px;font-size:15px}
+.on-deep .btn-ghost{color:var(--white)}
+.on-deep .btn-ghost:hover{background:var(--white);color:var(--deep);border-color:var(--white)}
+.menu-btn{display:none;margin-left:auto;background:none;border:0;padding:10px;color:var(--ink);cursor:pointer}
+.menu-btn span{display:block;width:24px;height:2px;background:currentColor;margin:5px 0;border-radius:2px}
+.drawer{border-top:1px solid var(--tile-line);background:var(--white)}
+.drawer ul{list-style:none;margin:0;padding-block:8px 18px;display:grid}
+.drawer a{display:block;padding:13px 0;border-bottom:1px solid var(--tile);color:var(--ink);text-decoration:none;font-weight:700}
+.drawer a[aria-current]{color:var(--lane)}
+.drawer .btn{margin-top:14px;border-bottom:0}
+@media (max-width:960px){.nav,.hdr .hdr-cta{display:none}.menu-btn{display:block}}
+
+/* pool tile ground */
+.tiled{background-color:var(--tile);background-image:linear-gradient(var(--tile-line) 1px, transparent 1px),linear-gradient(90deg, var(--tile-line) 1px, transparent 1px);background-size:28px 28px}
+
+/* hero */
+.hero{padding-block:clamp(40px,6vw,80px) clamp(48px,6vw,88px)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero .wrap>*{min-width:0}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.hero-photo{position:relative}
+.hero-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);box-shadow:0 30px 60px -30px rgba(8,50,79,.55)}
+.hero-photo.wide img{aspect-ratio:4/3}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero-photo img{aspect-ratio:4/3}}
+
+/* depth-marker tiles: real facts styled like the tiles on a pool edge */
+.markers{display:flex;flex-wrap:wrap;gap:10px}
+.marker{background:var(--white);border:2px solid var(--deep);border-radius:6px;padding:10px 14px 9px;min-width:104px;display:grid;gap:3px}
+.marker b{font:900 30px/1 var(--display);color:var(--deep);letter-spacing:.01em}
+.marker span{font:700 11px/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hero-photo .markers{position:absolute;left:-18px;bottom:-26px;right:18px;flex-wrap:nowrap}
+.hero-photo .marker{flex:1 1 0;min-width:0}
+@media (max-width:860px){.hero-photo .markers{position:static;margin-top:14px;flex-wrap:wrap}.hero-photo .marker{flex:1 1 100px}}
+.quotes.masonry{display:block;columns:3 300px;column-gap:22px}
+.masonry .q{break-inside:avoid;margin-bottom:22px}
+h1{overflow-wrap:break-word}
+
+/* lane rope divider */
+.rope{height:12px;background:
+  radial-gradient(circle at 50% 50%, rgba(255,255,255,.35) 0 2px, transparent 3px) 0 0/24px 12px,
+  repeating-linear-gradient(90deg,var(--rope) 0 24px,var(--white) 24px 48px,var(--lane) 48px 72px,var(--white) 72px 96px);
+  border-block:2px solid var(--deep)}
+
+/* sections */
+.sec{padding-block:clamp(56px,7vw,96px)}
+.sec-head{display:grid;gap:14px;margin-bottom:40px;max-width:760px}
+.deep{background:var(--deep);color:#d7e6ef}
+.deep h1,.deep h2,.deep h3{color:var(--white)}
+.deep .eyebrow{color:var(--chlorine)}
+.deep a{color:var(--chlorine)}
+.deep .lede,.deep .prose{color:#c4d7e3}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
+.split>*{min-width:0}
+.split.flip>:first-child{order:2}
+.split img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r)}
+@media (max-width:860px){.split{grid-template-columns:1fr}.split.flip>:first-child{order:0}}
+
+/* programs */
+.programs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.prog{display:grid;grid-template-rows:auto 1fr;background:var(--white);border:1px solid var(--tile-line);border-radius:var(--r);overflow:hidden;text-decoration:none;color:var(--ink);transition:transform .2s, box-shadow .2s}
+.prog:hover{transform:translateY(-3px);box-shadow:0 22px 40px -24px rgba(8,50,79,.45);color:var(--ink)}
+.prog img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.prog div{padding:20px 22px 22px;display:grid;gap:8px;align-content:start}
+.prog p{color:var(--muted);font-size:16px}
+.prog .go{font-weight:700;color:var(--lane);font-size:15px;margin-top:4px}
+@media (max-width:960px){.programs{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.programs{grid-template-columns:1fr}}
+
+/* stat */
+.stat{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,64px);align-items:center}
+.stat .num{font:900 clamp(110px,16vw,200px)/.85 var(--display);color:var(--chlorine);letter-spacing:-.01em}
+.stat .num small{font-size:.45em}
+@media (max-width:700px){.stat{grid-template-columns:1fr}}
+
+/* checklist with lane-line bullets */
+.lanes{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.lanes li{position:relative;padding-left:34px;color:var(--ink)}
+.lanes li::before{content:"";position:absolute;left:0;top:.5em;width:20px;height:8px;background:var(--deep);border-radius:2px;box-shadow:inset 0 0 0 2px var(--deep)}
+.lanes li::after{content:"";position:absolute;left:16px;top:calc(.5em - 4px);width:4px;height:16px;background:var(--deep);border-radius:2px}
+.deep .lanes li{color:#e3eef5}
+.deep .lanes li::before,.deep .lanes li::after{background:var(--chlorine);box-shadow:none}
+
+.creds{columns:2;column-gap:48px;list-style:none;margin:0;padding:0}
+.creds li{break-inside:avoid;padding:10px 0;border-bottom:1px solid var(--tile-line);color:var(--ink);font-size:16px}
+@media (max-width:700px){.creds{columns:1}}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.quotes.two{grid-template-columns:repeat(2,1fr)}
+.q{background:var(--white);border:1px solid var(--tile-line);border-radius:var(--r);padding:26px;display:grid;gap:16px;margin:0}
+.q blockquote{margin:0;font-size:16px;color:var(--ink)}
+.q figcaption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.q .name{font:800 20px/1 var(--display);text-transform:uppercase;color:var(--deep);letter-spacing:.02em}
+.q .tag{font:700 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--lane);background:var(--tile);padding:6px 9px;border-radius:999px}
+.q img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px}
+@media (max-width:960px){.quotes{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.quotes,.quotes.two{grid-template-columns:1fr}}
+.gbadge{display:inline-flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--tile-line);border-radius:999px;padding:8px 16px 8px 8px;color:var(--ink);text-decoration:none;font-size:15px}
+.gbadge .g{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--tile);font:700 18px/1 Arial,sans-serif;color:#4285f4}
+.gbadge b{font:900 24px/1 var(--display)}
+.stars{color:var(--star);letter-spacing:1px}
+
+/* video cards */
+.videos{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+@media (max-width:700px){.videos{grid-template-columns:1fr}}
+.video{position:relative;display:block;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--deep);color:var(--white)!important;text-decoration:none}
+.video img{width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .2s, transform .4s}
+.video:hover img{opacity:.42;transform:scale(1.03)}
+.video .play{position:absolute;left:22px;bottom:22px;width:56px;height:56px;border-radius:50%;background:var(--white)}
+.video .play::after{content:"";position:absolute;left:22px;top:18px;border-left:16px solid var(--deep);border-top:10px solid transparent;border-bottom:10px solid transparent}
+.video .vt{position:absolute;left:92px;bottom:22px;right:22px;display:grid;gap:4px}
+.video .vt b{font:800 clamp(20px,2.4vw,28px)/1 var(--display);text-transform:uppercase}
+.video .vt span{font-size:14px;opacity:.9}
+
+/* cards */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--white);border:1px solid var(--tile-line);border-radius:var(--r);padding:26px;display:grid;gap:12px;align-content:start}
+.card img{width:calc(100% + 52px);margin:-26px -26px 6px;max-width:none;aspect-ratio:2/1;object-fit:cover;border-radius:var(--r) var(--r) 0 0}
+.card p{color:var(--muted);font-size:16px}
+.card.feature{background:var(--deep);border-color:var(--deep)}
+.card.feature h3{color:var(--white)}
+.card.feature p{color:#c4d7e3}
+.card.feature a{color:var(--chlorine)}
+@media (max-width:900px){.cards3{grid-template-columns:1fr}.card img{aspect-ratio:16/7}}
+.placeholder{aspect-ratio:4/3;border-radius:var(--r);border:2px dashed var(--tile-line);display:grid;place-items:center;color:var(--muted);font-size:14px;letter-spacing:.1em;text-transform:uppercase;background:var(--white)}
+
+/* blog */
+.posts{list-style:none;margin:0;padding:0;border-top:2px solid var(--deep)}
+.posts li{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--tile-line);align-items:baseline}
+.posts time{font:700 13px/1.3 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.posts h3{font-size:clamp(24px,3vw,34px)}
+@media (max-width:640px){.posts li{grid-template-columns:1fr;gap:6px}}
+
+/* news strip */
+.news{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;background:var(--white);border:1px solid var(--tile-line);border-radius:var(--r);padding:22px 26px}
+.news p{font-weight:700;color:var(--ink)}
+.news span{display:block;font-weight:400;color:var(--muted);font-size:15px}
+
+/* cta band */
+.cta-band .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+.cta-band .acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end}
+.phone-big{font:900 clamp(34px,4vw,48px)/1 var(--display);color:var(--white)!important;text-decoration:none;letter-spacing:.02em}
+@media (max-width:860px){.cta-band .wrap{grid-template-columns:1fr}.cta-band .acts{justify-content:flex-start}}
+
+/* footer */
+.ftr{background:#061f33;color:#a9c0cf;padding-block:56px 40px;font-size:15px}
+.ftr .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px}
+.ftr .wrap>*{min-width:0}
+.ftr .plate{display:inline-block;background:var(--white);padding:10px 14px;border-radius:8px}
+.ftr .plate img{height:46px;width:auto}
+.ftr h4{font:800 18px/1 var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--white);margin:0 0 14px}
+.ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ftr a{color:#d7e6ef;text-decoration:none}
+.ftr a:hover{color:var(--chlorine)}
+.soc{display:flex;gap:12px;margin-top:18px}
+.soc a{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.08)}
+.ftr .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding-top:22px;font-size:14px}
+@media (max-width:800px){.ftr .wrap{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="hdr"><div class="wrap">
+<a class="logo" href="index.html"><img src="images/logo.png" alt="Serrago's Swimmers" width="271" height="80"></a>
+<ul class="nav">
+<li><details data-more><summary>Lessons</summary><ul class="dd"><li><a href="childrens-swim-lessons.html">Children's Swim Lessons</a></li><li><a href="adult-swim-lessons.html">Adult Swim Lessons</a></li><li><a href="triathlete-swim-lessons.html">Triathlete Swim Lessons</a></li><li><a href="triathlete-swim-training.html">Triathlete Swim Training</a></li><li><a href="special-needs.html">Special Needs Swim Lessons</a></li><li><a href="strength-training.html">Strength Training</a></li></ul></details></li>
+<li><a href="meet-the-swim-coaches.html">Coaches</a></li>
+<li><a href="testimonials.html">Testimonials</a></li>
+<li><a href="blog.html" aria-current="page">Blog</a></li>
+</ul>
+<a class="btn btn-primary btn-sm hdr-cta" href="https://www.waitlistr.com/lists/9c2dc945/2025-swim-lessons" target="_blank" rel="noopener">Join the waitlist</a>
+<button class="menu-btn" data-menu-btn aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+</div>
+<nav class="drawer" data-menu hidden><div class="wrap"><ul><li><a href="index.html">Home</a></li><li><a href="childrens-swim-lessons.html">Children's Swim Lessons</a></li><li><a href="adult-swim-lessons.html">Adult Swim Lessons</a></li><li><a href="triathlete-swim-lessons.html">Triathlete Swim Lessons</a></li><li><a href="triathlete-swim-training.html">Triathlete Swim Training</a></li><li><a href="special-needs.html">Special Needs Swim Lessons</a></li><li><a href="strength-training.html">Strength Training</a></li><li><a href="meet-the-swim-coaches.html">Meet the Coaches</a></li><li><a href="testimonials.html">Testimonials</a></li><li><a href="blog.html" aria-current="page">Blog</a></li><li><a class="btn btn-primary" href="https://www.waitlistr.com/lists/9c2dc945/2025-swim-lessons" target="_blank" rel="noopener">Join the waitlist</a></li></ul></div></nav>
+</header><main>
+<section class="hero tiled" style="padding-bottom:48px"><div class="wrap" style="grid-template-columns:1fr">
+<div class="stack"><p class="eyebrow">Serrago's Swimmers</p><h1>Learn to Swim Blog</h1><p class="lede">Follow the blog of Serrago's Swimmers in Albany and swimmer/triathlete Ashley Serrago.</p></div>
+</div></section>
+<section class="sec"><div class="wrap"><ul class="posts"><li><time>August 3, 2022</time><h3>3 Important Summer Safety Swim Tips</h3></li><li><time>November 29, 2021</time><h3>Celebrating 10 Years In Swim Lesson Business</h3></li><li><time>August 4, 2020</time><h3>Benefits of Swim Team</h3></li><li><time>July 22, 2020</time><h3>Benefits of Swim Lessons</h3></li><li><time>July 14, 2020</time><h3>Benefits of Swim Lessons</h3></li><li><time>October 1, 2019</time><h3>Swim Lesson Instructor Wanted</h3></li><li><time>October 23, 2018</time><h3>Benefits of Swimming</h3></li></ul></div></section>
+<section class="sec deep on-deep cta-band"><div class="wrap">
+<div class="stack"><p class="eyebrow">Ready to get in the water?</p><h2>Lessons run Monday – Friday</h2><p class="lede">Once a week, same day, same time, same instructor. Join the waitlist or call Ashley to find your spot.</p></div>
+<div class="stack" style="justify-items:start"><a class="phone-big" href="tel:5189610112">(518) 961-0112</a>
+<div class="acts" style="justify-content:flex-start"><a class="btn btn-primary" href="https://www.waitlistr.com/lists/9c2dc945/2025-swim-lessons" target="_blank" rel="noopener">Join the waitlist</a></div></div>
+</div></section></main><div class="rope" aria-hidden="true"></div>
+<footer class="ftr"><div class="wrap">
+<div><a class="plate" href="index.html"><img src="images/logo.png" alt="Serrago's Swimmers" width="271" height="80"></a>
+<p style="margin-top:18px">Private 1:1 swim lessons for kids, adults and triathletes in Albany, NY.</p>
+<p style="margin-top:14px"><a href="tel:5189610112" style="font-weight:700;font-size:18px">(518) 961-0112</a></p>
+<div class="soc"><a href="https://www.facebook.com/SerragosSwimmers/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M22 12.061C22 6.505 17.523 2 12 2S2 6.505 2 12.061c0 5.022 3.657 9.184 8.438 9.939v-7.03h-2.54v-2.91h2.54V9.845c0-2.522 1.492-3.915 3.777-3.915 1.094 0 2.238.197 2.238.197v2.476h-1.26c-1.243 0-1.63.775-1.63 1.57v1.888h2.773l-.443 2.908h-2.33V22c4.78-.755 8.437-4.917 8.437-9.939z" fill-rule="evenodd"></path></svg></a><a href="https://www.instagram.com/serragos_swimmers" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M16.604 8.516c.13.35.198.719.203 1.091.033.622.033.811.033 2.386 0 1.574-.004 1.763-.033 2.385a3.273 3.273 0 0 1-.203 1.091 1.956 1.956 0 0 1-1.12 1.12c-.35.13-.719.198-1.091.204-.622.032-.811.032-2.386.032-1.574 0-1.763-.003-2.385-.032a3.273 3.273 0 0 1-1.091-.204 1.956 1.956 0 0 1-1.12-1.12 3.273 3.273 0 0 1-.204-1.09c-.032-.623-.032-.812-.032-2.386 0-1.575.003-1.764.032-2.386.006-.372.074-.741.204-1.09a1.956 1.956 0 0 1 1.12-1.12c.35-.13.718-.199 1.09-.204.623-.033.812-.033 2.386-.033 1.575 0 1.764.004 2.386.033.372.005.741.074 1.09.203.515.2.922.606 1.12 1.12zM12 15.033a3.033 3.033 0 1 0 0-6.066 3.033 3.033 0 0 0 0 6.066zm3.153-5.477a.71.71 0 1 0 0-1.418.71.71 0 0 0 0 1.418zM12 13.967a1.967 1.967 0 1 1 0-3.934 1.967 1.967 0 0 1 0 3.934zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10A10 10 0 0 0 12 2zm5.87 12.433c-.01.49-.102.974-.274 1.432a3.018 3.018 0 0 1-1.727 1.728 4.335 4.335 0 0 1-1.433.272c-.629.03-.829.037-2.432.037-1.604 0-1.819 0-2.433-.037a4.335 4.335 0 0 1-1.433-.272 3.018 3.018 0 0 1-1.727-1.728 4.335 4.335 0 0 1-.273-1.432c-.029-.63-.036-.83-.036-2.433 0-1.604 0-1.818.036-2.433.01-.49.102-.974.273-1.432a3.018 3.018 0 0 1 1.727-1.728 4.335 4.335 0 0 1 1.433-.272c.629-.03.829-.037 2.433-.037 1.603 0 1.818 0 2.432.037.49.009.974.101 1.433.272.794.307 1.42.934 1.727 1.728.172.458.264.943.273 1.432.03.63.036.83.036 2.433 0 1.604-.007 1.804-.036 2.433z"></path></svg></a><a href="https://www.x.com/SerragoSwimmers" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M14.933 17.2645L7.44211 6.77221H9.06447L16.5654 17.2645H14.933Z"></path><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM10.6893 12.6803L6 6H9.58023L12.6597 10.42L16.5504 6H17.6019L13.148 11.1015L18 18H14.4348L11.165 13.3471L7.07907 18H6L10.6893 12.6803Z" fill-rule="evenodd"></path></svg></a><a href="https://www.youtube.com/user/slhey185" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><g transform="translate(2 2)"><polygon points="8.811 11.495 11.927 9.88 8.807 8.255"></polygon><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10A10 10 0 0 0 10 0zm5.673 10.436c0 .935-.066 1.866-.066 1.866-.027.415-.17.814-.41 1.153-.306.308-.72.483-1.153.487-1.615.116-4.033.12-4.033.12s-2.99-.03-3.913-.117a1.91 1.91 0 0 1-1.25-.49 2.273 2.273 0 0 1-.419-1.146s-.033-.934-.033-1.865V9.56c0-.935.033-1.876.033-1.876s.03-.804.364-1.153c.305-.312.72-.493 1.156-.506 1.615-.116 4.036-.149 4.036-.149s2.411.033 4.026.15c.44.016.855.203 1.16.52.244.336.394.731.436 1.145 0 0 .07.934.07 1.865l-.004.88z"></path></g></svg></a></div></div>
+<div><h4>Lessons</h4><ul><li><a href="childrens-swim-lessons.html">Children's Swim Lessons</a></li><li><a href="adult-swim-lessons.html">Adult Swim Lessons</a></li><li><a href="triathlete-swim-lessons.html">Triathlete Swim Lessons</a></li><li><a href="triathlete-swim-training.html">Triathlete Swim Training</a></li><li><a href="special-needs.html">Special Needs Swim Lessons</a></li><li><a href="strength-training.html">Strength Training</a></li></ul></div>
+<div><h4>About</h4><ul><li><a href="meet-the-swim-coaches.html">Meet the Coaches</a></li><li><a href="testimonials.html">Testimonials</a></li><li><a href="blog.html">Blog</a></li><li><a href="https://www.waitlistr.com/lists/9c2dc945/2025-swim-lessons" target="_blank" rel="noopener">Join the waitlist ↗</a></li></ul></div>
+<p class="legal">© Serrago's Swimmers LLC · Albany, NY</p>
+</div></footer><script>
+(function(){
+  var b=document.querySelector('[data-menu-btn]'), m=document.querySelector('[data-menu]');
+  if(b&&m){b.addEventListener('click',function(){var o=m.hidden;m.hidden=!o;b.setAttribute('aria-expanded',String(o));});}
+  document.addEventListener('click',function(e){
+    document.querySelectorAll('details[data-more][open]').forEach(function(d){ if(!d.contains(e.target)) d.removeAttribute('open'); });
+  });
+})();
+</script>
+</body>
+</html>
